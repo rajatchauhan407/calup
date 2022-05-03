@@ -1,0 +1,12 @@
+.headerContainer{
+    display:flex;
+    width:100%;
+    height:auto;
+    background-color: mediumpurple;
+}
+.logo{
+    display:flex;
+    width:25%;
+    height:auto;
+    justify-content: center;
+}

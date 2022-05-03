@@ -12,12 +12,18 @@ function App() {
       <Route path="/">
           <Redirect to="/home" />
       </Route>
-      {!authCtx.isLoggedIn && (<Route path="/login">
+      {/* {!authCtx.isLoggedIn && (<Route path="/login">
         <LoginForm />
-      </Route>)}
-      <Route path="/home">
+      </Route>)} */}
+      <Route path="/login">
+        <LoginForm />
+      </Route>
+      {/* <Route path="/home">
         {authCtx.isLoggedIn && (<Home />)}
         {!authCtx.isLoggedIn && (<Redirect to="/login" /> )}
+      </Route> */}
+      <Route path="/home">
+        <Home />
       </Route>
       {/* <Route path="*">
           <Redirect to="/login" />
