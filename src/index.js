@@ -5,17 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {Helmet} from "react-helmet";
-import {AuthContextProvider} from './store/auth-context';
+import {AuthContextProvider} from "./store/auth-context-new";
 ReactDOM.render(
   <React.StrictMode>
-    <AuthContextProvider>
     <BrowserRouter>
     <Helmet>
       <script src="https://accounts.google.com/gsi/client" async defer></script>
     </Helmet>
+    <AuthContextProvider>
         <App />
-    </BrowserRouter>
     </AuthContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

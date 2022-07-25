@@ -1,15 +1,14 @@
 import { React, useEffect, useState, useContext} from "react";
 import useInput from "../hooks/use-input";
 import styles from "./loginForm.module.css";
-import { NavLink } from "react-router-dom";
-// import useHttp from "../hooks/use-http";
-// import GoogleLogin, { GoogleLogout } from 'react-google-login';
+import useHttp from "../hooks/use-http";
+import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import useHttp1 from "../hooks/use-http1";
 import {sendAuthData} from "../lib/api";
 import { sendSignUpRequest } from "../lib/api";
 import AuthContext from "../store/auth-context";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+
 function LoginForm() {
   const [isLogin, setIsLogin] = useState(false);
   const authCtx = useContext(AuthContext);
@@ -40,7 +39,6 @@ function LoginForm() {
     setIsLogin((prevState)=> !prevState);
   }
   const history = useHistory();
-  console.log(history);
   // const {sendRequest, isLoading} = useHttp({url:"http://localhost:9000/signup", method:"POST",
   // headers: {
   //   'Content-Type': 'application/json',
@@ -82,23 +80,28 @@ function LoginForm() {
     // resetEmail();
     // resetPassword();
   };
-  // const googleClickHandler = async ()=>{
-  //   const data = {
-  //     message:"Request Check"
-  //   };
-  //  const response = await fetch('http://localhost:9000/authgoogle',{
-  //       method:'POST',
-  //       mode:'cors',
-  //       credentials: 'same-origin',
-  //       headers:{
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(data)
-  //     }).then(res => {
-  //      return res;
-  //     });
-  //     console.log(await response.json());
-  //    }
+  const responseGoogle = (response) => {
+      console.log(response);
+      const data = {
+        tokenId:response.tokenId
+      }
+      fetch('http://localhost:9000/auth-receiver',{
+        method:'POST',
+        mode:'cors',
+        credentials: 'same-origin',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then((res) => {
+        
+      }).catch(err =>{
+        console.log(err);
+      });  
+  }
+  const logout = (response) =>{
+    response.isSignedIn = false;
+  }
   return (
     <form onSubmit={submitHandler} className={`${styles["form-container"]}`}>
       <div className={`${styles["image-container"]}`}>
@@ -154,18 +157,20 @@ function LoginForm() {
           {isLogin ? 'Click To Login' : 'Click to SignUp'}
         </button>
       </div>
-      
+      <div className={styles["form-control"]}>
+      <GoogleLogin
+    clientId="357888347936-t044jniqpmrc0ubjkgrn4h50vggi38uv.apps.googleusercontent.com"
+    buttonText="Sign In With Google"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+    scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid"
+    redirectUri="http://localhost:9000/auth-receiver"
+  />
+      </div>
     <div className={styles["form-control"]}>
     </div>
-    <div className={styles["form-control"]}>
-      {/* <GoogleLogin
-    buttonText="Sign In With Google"
-    onClick={googleClickHandler}
-  /> */}
-  <a className={styles.active} href="http://localhost:9000/authgoogle"><div className={styles.googleButton}>SignIn with google</div></a>
-      </div>
     </form>
-    
   );
 }
 // 357888347936-t044jniqpmrc0ubjkgrn4h50vggi38uv.apps.googleusercontent.com

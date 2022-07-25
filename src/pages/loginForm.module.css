@@ -109,8 +109,45 @@ body {
 .invalid-label{
     color:rgb(194, 29, 29,0.5) !important;
 }
+.googleButton{
+    background-color: #6658d3;
+    padding:5px;
+    color:#fff;
+    outline: none;
+    border:none;
+    font-size: 24px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+    cursor:pointer;
+}
 @media(min-width:640px){
     .form-container{
         width:50%;
     }
+}
+
+.navList{
+    display:flex;
+    list-style: none;
+    width:100%;
+}
+.navList li{
+    padding:0rem 0.5rem;
+    box-sizing: border-box;
+}
+/* a{
+    text-decoration: none;
+    color:black;
+    align-content: center;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+} */
+.active{
+    background-color: azure;
+    text-decoration: none;
+    color:black;
+    align-content: center;
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
 }

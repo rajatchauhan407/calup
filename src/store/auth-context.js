@@ -56,7 +56,7 @@ export const AuthContextProvider = (props) =>{
         localStorage.setItem('token',token);
         localStorage.setItem('expirationTime',expirationTime);
         const remainingTime = calculateRemainingTime(expirationTime);
-      logoutTimer = setTimeout(()=>{
+        logoutTimer = setTimeout(()=>{
             logoutHandler();
         },remainingTime);
     };
@@ -66,7 +66,7 @@ export const AuthContextProvider = (props) =>{
          }
      },[tokenData, logoutHandler]);
 
-/******Auth Context Value  *********/
+/*******  Auth Context Value  *********/
     const contextValue = {
         token: token,
         isLoggedIn: userIsLoggedIn,
