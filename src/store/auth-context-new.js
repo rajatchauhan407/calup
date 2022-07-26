@@ -6,12 +6,15 @@ const AuthContext = new React.createContext({
     isLoggedIn:false,
     email:'',
     name:'',
+    imageUrl:'',
     onLogin:()=>{},
     onLogout:()=>{}
 });
 // Provider component in auth-context file only 
 export const AuthContextProvider = (props)=>{
   const [isLoggedIn,setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
     useEffect(()=>{
      async function getMe(){
@@ -27,6 +30,8 @@ export const AuthContextProvider = (props)=>{
      }
      getMe().then(res => {if(res.email){
       setIsLoggedIn(true);
+      setEmail(res.email);
+      setImageUrl(res.picture);
      }});
     },[]);
    const loginHandler = ()=>{ console.log("Login Handler")};
@@ -35,7 +40,9 @@ export const AuthContextProvider = (props)=>{
    const contextValue = {
     isLoggedIn :isLoggedIn,
     onLogin:loginHandler,
-    onLogout:logoutHandler
+    onLogout:logoutHandler,
+    email:email,
+    imageUrl:imageUrl
    }
    return (<AuthContext.Provider value={contextValue}>
         {props.children}

@@ -11,7 +11,7 @@ function Home(){
     }
     return (
         <div>
-            <Header />
+            
             {/* <h1>Hello !!</h1>
             <SuccessBtn 
             backgroundColor="green"

@@ -1,0 +1,56 @@
+.container{
+    display:flex;
+    width:100%;
+    height:auto;
+    justify-content: end;
+}
+.imageContainer{
+    display:flex;
+    width:18%;
+    height:auto;
+    flex-direction: column;
+    justify-content: center;
+}
+.imageStyle{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    cursor: pointer;
+}
+.userDropBox{
+    z-index:100;
+    position:absolute;
+    top:55px;
+    width:300px;
+    right:10px;
+    height:200px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 15px rgb(0 0 0 / 14%);
+    padding:10px;
+    border-radius: 10px;
+    opacity:0;
+    visibility: hidden;
+    background-color: #fff;
+}
+.userDropBox::before{
+    height: 0;
+    border-bottom: 7px solid #fff;
+    position: absolute;
+    top: -7px;
+    right: 8%;
+    width: 0;
+    border-left: 7px solid transparent;
+    content: "";
+    border-right: 7px solid transparent;
+    box-sizing:border-box;
+    transition: all .2s;
+}
+.imageContainer:hover + .userDropBox{
+    opacity:1;
+    visibility: visible;
+
+}
+.userDropBox:hover{
+    opacity:1;
+    visibility: visible;
+}

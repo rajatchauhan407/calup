@@ -16,3 +16,9 @@
     height:auto;
     justify-content: flex-start;
 }
+.rightNav{
+    display:flex;
+    width:25%;
+    height:auto;
+    justify-content: end;
+}
