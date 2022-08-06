@@ -1,14 +1,14 @@
 import { React, useEffect, useState, useContext} from "react";
 import useInput from "../hooks/use-input";
 import styles from "./loginForm.module.css";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 // import useHttp from "../hooks/use-http";
 // import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import useHttp1 from "../hooks/use-http1";
 import {sendAuthData} from "../lib/api";
 import { sendSignUpRequest } from "../lib/api";
 import AuthContext from "../store/auth-context";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import axios from "axios";
 function LoginForm() {
   const [isLogin, setIsLogin] = useState(false);
@@ -39,8 +39,8 @@ function LoginForm() {
   function switchAuthHandler(){
     setIsLogin((prevState)=> !prevState);
   }
-  const history = useHistory();
-  console.log(history);
+  // const history = useHistory();
+  // console.log(history);
   // const {sendRequest, isLoading} = useHttp({url:"http://localhost:9000/signup", method:"POST",
   // headers: {
   //   'Content-Type': 'application/json',
@@ -55,20 +55,20 @@ function LoginForm() {
   if(emailIsValid && passwordIsValid) {
     formIsValid = true;
   }
-  useEffect(
-    ()=>{
-      if(signInState.status === 'completed'){
-        const currentTime = new Date().getTime();
-        const expirationTime = currentTime + (+signInState.data.expiresIn);
-        authCtx.login(signInState.data.token, new Date(expirationTime).toISOString());
-        if(signInState.data.token){
-          history.replace('/home');
-        }
-      }else{
-        // console.log(signInState);
-      } 
-    },[signInState,signUpState,isLogin,authCtx,history]
-  );
+  // useEffect(
+  //   ()=>{
+  //     if(signInState.status === 'completed'){
+  //       const currentTime = new Date().getTime();
+  //       const expirationTime = currentTime + (+signInState.data.expiresIn);
+  //       authCtx.login(signInState.data.token, new Date(expirationTime).toISOString());
+  //       if(signInState.data.token){
+  //         history.replace('/home');
+  //       }
+  //     }else{
+  //       // console.log(signInState);
+  //     } 
+  //   },[signInState,signUpState,isLogin,authCtx,history]
+  // );
   const submitHandler = async (event) => {
     event.preventDefault();
     if(!formIsValid){

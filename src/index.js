@@ -6,18 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {Helmet} from "react-helmet";
 import {AuthContextProvider} from "./store/auth-context-new";
-ReactDOM.render(
-  <React.StrictMode>
+import { Provider } from 'react-redux';
+import {store} from './app/store'; 
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  
     <BrowserRouter>
     <Helmet>
       <script src="https://accounts.google.com/gsi/client" async defer></script>
     </Helmet>
+    <Provider store={store}>
     <AuthContextProvider>
         <App />
     </AuthContextProvider>
+    </Provider>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
