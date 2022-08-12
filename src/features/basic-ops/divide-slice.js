@@ -6,7 +6,7 @@ const initialState = {
     loading: 'idle'
 }
 
-export const fetchQuestions = createAsyncThunk('divide/fetchQuestions',async ()=>{
+export const fetchQuestionsDivide = createAsyncThunk('divide/fetchQuestions',async (kind)=>{
     try{const response = await fetch("http://localhost:9000/multiply", {
         method: "POST",
         mode: "cors",
@@ -14,7 +14,7 @@ export const fetchQuestions = createAsyncThunk('divide/fetchQuestions',async ()=
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          kind: "multiply",
+          kind: kind,
         }),
       });
       return await response.json();}catch(error){
@@ -28,7 +28,7 @@ const divideSlice = createSlice({
 
     },
     extraReducers: (builder)=>{
-        builder.addCase(fetchQuestions.fulfilled,(state,action)=>{
+        builder.addCase(fetchQuestionsDivide.fulfilled,(state,action)=>{
           const {questions} = action.payload;
           state.loading = "succed";
           state.questions = questions;

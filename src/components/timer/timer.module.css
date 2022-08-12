@@ -1,0 +1,17 @@
+.container{
+    display:flex;
+    font-size: 20px;
+    width:100%;
+    height:auto;
+    justify-content: end;
+}
+.hours{
+    display:flex;
+    box-sizing: border-box;
+    padding: 2%;
+    width:10%;
+    height:auto;
+    justify-content: center;
+    border-radius: 10%;
+    border: 5px solid #1E2E9E;
+}

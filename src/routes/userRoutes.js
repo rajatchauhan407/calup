@@ -7,9 +7,10 @@ function UserRoutes(){
     return (
         <>
          {
-            authCtx.isLoggedIn ? 
-            <Outlet/>:
-            <Navigate to="/login"/>
+            // authCtx.isLoggedIn ? 
+            // <Outlet/>:
+            // <Navigate to="/login"/>
+            <Outlet/>
          }   
         </>
     )

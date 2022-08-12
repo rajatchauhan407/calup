@@ -5,7 +5,7 @@
 body {
 	font-family: "DM Sans", sans-serif;
 	line-height: 1.5;
-	background-color: #f1f3fb;
+	/* background-color: #f1f3fb; */
 }
 .form-container{
     margin: auto auto;
@@ -27,7 +27,6 @@ body {
     padding:5px;
     color: #6658d3;
     position: relative;
-    
 }
 .caluph1{
     margin:0 auto !important;

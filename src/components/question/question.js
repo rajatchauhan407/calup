@@ -1,8 +1,12 @@
-import React from "react";
+import React,{useState} from "react";
+import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 import styles from "./question.module.css";
-
 const Question = (props)=>{
-    // console.log(props);
+    // const [answer, setAnswer] = useState('');
+    // catching input from question 
+    const inputAnswerHandler = (event)=>{
+        props.onGettingInput(event.target.value);
+    }
     return (
         <React.Fragment>
             <div className={styles.firstOperand+" "+styles.elContainer}>
@@ -20,6 +24,8 @@ const Question = (props)=>{
        <div className={styles.answer+" "+styles.elContainer}>
        <input 
             type="number"
+            onChange={inputAnswerHandler}
+            value = {props.value}
        />
        </div>
         </React.Fragment>

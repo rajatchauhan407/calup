@@ -1,16 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  questions: [
-    {
+  questions: 
+    [{
       firstOperand: 1,
       secondOperand: 1,
       operator: "×",
       answer: 1,
       level: 1,
       standard: 1,
-    },
-  ],
+    }]
 };
 
 const multiplySlice = createSlice({
@@ -18,8 +17,7 @@ const multiplySlice = createSlice({
   initialState,
   reducers: {
     getQuestions(state, action) {
-        console.log(action);
-      state.questions = action.payload.questions.slice(0, 9);
+      state.questions = action.payload.questions;
     },
   },
 });
@@ -47,5 +45,5 @@ export const getMultiplicationQuestions = () => {
     }
   };
 };
-export const { getQuestions } = multiplySlice.reducer;
+export const { getQuestions } = multiplySlice.actions;
 export default multiplySlice.reducer;

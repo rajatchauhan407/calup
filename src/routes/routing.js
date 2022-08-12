@@ -8,6 +8,7 @@ import Subtract from "../pages/subtract/subtract";
 import Header from "../components/header/header";
 import ProtectedRoute from "./protectedRoute";
 import UserRoutes from "./userRoutes";
+import Result from "../components/results/result";
 const Routing = (props)=>{
 return (
 
@@ -19,6 +20,7 @@ return (
             <Route path="/divide" element={<Divide/>} />
             <Route path="/add" element={<Add />} />
             <Route path="/subtract" element={<Subtract/>} />
+            <Route path="/results" element={<Result/>} />
         </Route>     
         <Route element={<ProtectedRoute/>}>
             <Route path="/login" element={<LoginForm/>} />
