@@ -40,3 +40,11 @@
   border-radius: 10px;
   box-shadow: 3px 4px 9px 1px #7D7676;
 }
+@media only screen and (max-width:640px) {
+  .result_card_wrapper{
+    width:100%;
+  }
+  .resultCardResult{
+    width:90%;
+  }
+}

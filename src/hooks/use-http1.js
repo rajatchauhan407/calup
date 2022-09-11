@@ -1,5 +1,5 @@
-import { useReducer,useCallback } from "react";
-
+import { useReducer,useCallback, useContext } from "react";
+import AuthContext from "../store/auth-context-new";
 function httpReducer(state, action){
         if(action.type==='SEND'){
             return {
@@ -26,6 +26,7 @@ function httpReducer(state, action){
 }
 
 function useHttp1(requestFunction, startWithPending= false){
+     const authCtx = useContext(AuthContext);
         const [httpState, dispatchFn] = useReducer(httpReducer, {
             data:null,
             error: null,
@@ -37,24 +38,26 @@ function useHttp1(requestFunction, startWithPending= false){
                 });
                 try{
                     const responseData = await requestFunction(requestData);
-                    if(!responseData.message){
+                    const {data} = responseData;
+                    if(data.message){
                         dispatchFn({
                             type:'SUCCESS',
                             responseData:responseData.data,
                         });
-                    }else{
+                    authCtx.onLogin();
+                    }else if(responseData.message){
+                        // console.log(responseData.message);
                         throw new Error(responseData.message);
                     }
                     
                 }catch(error){
-                    // console.log(error);
+                    console.log(error.message)
                     dispatchFn({
                         type:'ERROR',
                         errorMessage: error.message || 'Something Went wrong!'
                     })
                 }
           }
-        //   console.log(httpState);
       return {
         sendRequest,
         httpState

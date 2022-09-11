@@ -1,18 +1,11 @@
 import React from "react";
 import styles from "./result.module.css";
-import { Card } from "antd";
 import useGetResults from "../../hooks/use-getResults";
 const Result = (props) => {
   const { results } = useGetResults();
 
   return (
     <div className={styles.result_card_wrapper}>
-      <Card
-        title="Results"
-        style={{ width: "100%", textAlign: "center" }}
-        headStyle={{ fontSize: "26px" }}
-        hoverable="true"
-      ></Card>
       <div className={styles.resultCard}>
         <div className={styles.resultCardTitle}> Type of Questions</div>
         <div className={styles.resultCardResult}>

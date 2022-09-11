@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 import styles from "./question.module.css";
 const Question = (props)=>{
     // const [answer, setAnswer] = useState('');

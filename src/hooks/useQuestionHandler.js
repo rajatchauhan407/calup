@@ -61,7 +61,10 @@ const answerState = useSelector(state => state.answer);
 
     const getQuestionHandler = ()=>{
         setclickTimer(true);
+        let count = 0;
           questionInterval = setInterval(()=>{  
+            count = count + 1;
+            console.log(count);
             const question = getQuestion(questions);
               setQuestion((prevQuestion)=>{
                 setAnswer((prevState)=>{

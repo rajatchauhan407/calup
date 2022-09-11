@@ -22,3 +22,20 @@
     height:auto;
     justify-content: end;
 }
+@media only screen and (max-width:600px){
+    .midNav{
+        display:none;
+    }
+    .rightNav{
+        display:none;
+    }
+    .logo{
+        width:90%;
+    }
+    .menuIcon{
+        width:10%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

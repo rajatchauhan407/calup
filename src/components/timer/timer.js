@@ -2,12 +2,12 @@ import React,{useEffect, useState} from 'react';
 import styles from "./timer.module.css";
 let timerInterval;
 const Timer = (props)=>{
-    
     const [total,setTotal] = useState(props.time);
     const [hours, setHours] = useState('00');
     const [minutes, setMinutes] = useState('00');
     const [seconds, setSeconds] = useState('00');
     
+
     //function for countdown 
     const startTimerHandler = () => {
      timerInterval  = setInterval(()=>{
@@ -27,11 +27,12 @@ const Timer = (props)=>{
     // used to start the timer in parent by lifting the state up
     useEffect(()=>{
                 if(props.startTimer){
+                    setTotal(props.time);
                     startTimerHandler();
                 }else{
                     clearInterval(timerInterval);
                 }
-    },[props.startTimer]); 
+    },[props.startTimer, props.time]); 
         
     return (
         <>

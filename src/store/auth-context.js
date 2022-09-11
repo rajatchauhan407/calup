@@ -1,14 +1,14 @@
-import React,{useState, useEffect, useCallback} from 'react';
-
-let logoutTimer;  // Initializing logout timer remaining time calculation
-
-const AuthContext = React.createContext({
+import React,{useState, useCallback} from 'react';
+import AuthContext from './auth-context-new';
+import {useNavigate} from 'react-router-dom';
+const AuthContextJWT = React.createContext({
     token:'',
     isLoggedIn: false,
     login:(token,expirationTIme) =>{},
     logout: ()=>{}
 });
 
+let logoutTimer;
 /********** Calculates the time reamining for logout to take place *******************/
 const calculateRemainingTime = (expirationTime) => {
     const currentTime = new Date().getTime();
@@ -20,11 +20,11 @@ const calculateRemainingTime = (expirationTime) => {
 /**********Retrieves the stored token and expiration time from the local storage *******/
 const retrieveStoredToken = () => {
     const storedToken = localStorage.getItem('token');
-    const storedExpirationDate = localStorage.getItem('expirationTime');
+    const storedExpirationDate = localStorage.getItem('expiresIn');
     const remainingTime = calculateRemainingTime(storedExpirationDate);
     if(remainingTime <= 0){
         localStorage.removeItem('token');
-        localStorage.removeItem('expirationTime');
+        localStorage.removeItem('expiresIn');
         return null;
     }
     return {
@@ -33,49 +33,46 @@ const retrieveStoredToken = () => {
     }
 }
 
-/***********   Component Function AuthContextProvider ********/
-export const AuthContextProvider = (props) =>{
-    const tokenData = retrieveStoredToken();
-    let initialToken;
-    if(tokenData){
-        initialToken = tokenData.token;
+
+
+export const AuthContextProviderJWT = (props)=>{
+        const tokenData = retrieveStoredToken();
+        let initialToken;
+        if(tokenData){
+            initialToken = tokenData.token;
     }
-    const [token, setToken] = useState(initialToken);
-    const userIsLoggedIn = !!token;
-    /******* function to handle Logout  *******/
+        const [token, setToken] = useState(initialToken);
+
+        let navigate = useNavigate();
+        const loginHandler = (token, expirationTime)=>{
+            setToken(token);
+        localStorage.setItem('token', token);
+        localStorage.setItem('expiresIn', expirationTime);
+        const remainingTime = calculateRemainingTime(expirationTime);
+        logoutTimer = setTimeout(()=>{
+            logoutHandler();
+        },remainingTime);
+        navigate('../home');
+    };
+
     const logoutHandler = useCallback(() => {
         setToken(null);
         localStorage.removeItem('token');
         localStorage.removeItem('expirationTime');
         clearTimeout(logoutTimer);
     },[]);
-
-    /***************Function to handle login of the user  **********/
-    const loginHandler = (token, expirationTime) =>{
-        setToken(token);
-        localStorage.setItem('token',token);
-        localStorage.setItem('expirationTime',expirationTime);
-        const remainingTime = calculateRemainingTime(expirationTime);
-        logoutTimer = setTimeout(()=>{
-            logoutHandler();
-        },remainingTime);
-    };
-     useEffect(()=>{
-         if(tokenData){
-            logoutTimer = setTimeout(logoutHandler,tokenData.duration)
-         }
-     },[tokenData, logoutHandler]);
-
-/*******  Auth Context Value  *********/
     const contextValue = {
         token: token,
-        isLoggedIn: userIsLoggedIn,
+        isLoggedIn: '',
         login: loginHandler,
         logout: logoutHandler
     };
 
-    return (<AuthContext.Provider value={contextValue}>
-        {props.children}
-    </AuthContext.Provider>)
+    return (
+        <AuthContextJWT.Provider value={contextValue}>
+            {props.children}
+        </AuthContextJWT.Provider>
+    )
 }
-export default AuthContext;
+
+export default AuthContextJWT;

@@ -6,15 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {Helmet} from "react-helmet";
 import {AuthContextProvider} from "./store/auth-context-new";
+import { AuthContextProviderJWT } from './store/auth-context';
 import { Provider } from 'react-redux';
 import {store} from './app/store'; 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
     <BrowserRouter>
-    <Helmet>
-      <script src="https://accounts.google.com/gsi/client" async defer></script>
-    </Helmet>
     <Provider store={store}>
     <AuthContextProvider>
         <App />

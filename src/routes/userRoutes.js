@@ -4,13 +4,15 @@ import {useContext} from "react";
 
 function UserRoutes(){
     let authCtx = useContext(AuthContext);
+    console.log(authCtx.isLoggedIn);
     return (
         <>
          {
-            // authCtx.isLoggedIn ? 
-            // <Outlet/>:
-            // <Navigate to="/login"/>
-            <Outlet/>
+            !authCtx.isLoggedIn ? 
+            <Navigate to="/login"/>
+            :
+            <Outlet/>  
+            // <Outlet/>
          }   
         </>
     )
