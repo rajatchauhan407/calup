@@ -10,7 +10,9 @@ const AuthContext = new React.createContext({
     onLogout:()=>{}
 });
 // Provider component in auth-context file only 
-export const AuthContextProvider = (props)=>{
+export const 
+
+AuthContextProvider = (props)=>{
   let navigate = useNavigate();
   const loggedIn = localStorage.getItem('loggedIn');
   const [isLoggedIn,setIsLoggedIn] = useState(loggedIn || false);
