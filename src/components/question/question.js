@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import styles from "./question.module.css";
 const Question = (props)=>{
     // const [answer, setAnswer] = useState('');
@@ -7,7 +7,7 @@ const Question = (props)=>{
         props.onGettingInput(event.target.value);
     }
     return (
-        <React.Fragment>
+        <div className={styles.question}>
             <div className={styles.firstOperand+" "+styles.elContainer}>
                 <h1>{props.firstOperand}</h1>
             </div>
@@ -27,7 +27,7 @@ const Question = (props)=>{
             value = {props.value}
        />
        </div>
-        </React.Fragment>
+    </div>
     )
 }
 export default Question;

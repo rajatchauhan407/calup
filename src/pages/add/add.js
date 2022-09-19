@@ -7,6 +7,7 @@ import SuccessBtn from "../../components/buttons/success";
 import useQuestionHandler from "../../hooks/useQuestionHandler";
 import { renewAnswers } from "../../features/answer/answer-slice";
 import {useDispatch, useSelector} from "react-redux";
+import QuestionCard from "../../components/cards/question-card";
 
 function Add(){
   // getting timer value
@@ -15,21 +16,18 @@ function Add(){
   });
   // initializing dispatch function  
   const [timer,setTimer] = useState(time);
+
   const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(renewAnswers());
         setTimer(time);
-    },[time]);
+    },[setTimer, dispatch,time]);
 
-  
-
+// retrieving functions from custom hook
     const {
     clickTimer,
-    setclickTimer,
     getQuestionHandler,
-    setAnswer,
     answer,
-    questionInterval,
     getResultHandler, 
     stopTestHandler,
     catchInput,
@@ -38,9 +36,7 @@ function Add(){
 
     return (
     <div className={styles.mainContainer}>
-        <div className={styles.setTimer}>
           <SetTimer/>
-        </div>
         <div className={styles.timer}>
         <Timer
         time={timer}
@@ -48,8 +44,7 @@ function Add(){
         />
         </div>
         
-      <div className={styles.addBody}>
-        <div className={styles.question}>
+      <QuestionCard>
         <Question
           firstOperand={question.firstOperand}
           secondOperand={question.secondOperand}
@@ -59,13 +54,12 @@ function Add(){
           standard={question.standard}
           value = {answer}
           onGettingInput={catchInput}
-        />
-        </div>
+        /> 
         <div className={styles.successBtnContainer}>
           {!clickTimer?<SuccessBtn
          onClick={getQuestionHandler}
          width="30%"
-         backgroundColor="#9370DB"
+         backgroundColor="#eeedef"
          cursor="pointer"
          text="START"
          margin="0"
@@ -73,23 +67,24 @@ function Add(){
           <SuccessBtn 
           onClick = {stopTestHandler}
           width="30%"
-          backgroundColor="red"
+          backgroundColor="#eeedef"
           cursor="pointer"
           text="STOP"
           margin="0"
           />
-        }
+          }
         <SuccessBtn 
         width="30%"
         cursor="pointer"
         text="Results"
         onClick={getResultHandler}  
-        margin="0"    
+        margin="0" 
+        backgroundColor="#eeedef"   
         />
       </div>
-  
+      </QuestionCard>
       </div>
-      </div>);
+      );
 }
 
 export default Add;

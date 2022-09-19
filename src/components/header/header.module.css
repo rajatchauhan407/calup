@@ -20,9 +20,16 @@
     display:flex;
     width:25%;
     height:auto;
-    justify-content: end;
+    justify-content: flex-end;
 }
 @media only screen and (max-width:600px){
+    .headerContainer{
+        display:flex;
+        width:100%;
+        height:auto;
+        padding:5px;
+        background-color: mediumpurple;
+    }
     .midNav{
         display:none;
     }

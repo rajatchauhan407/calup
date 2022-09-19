@@ -15,7 +15,11 @@ const SetTimer = (props)=>{
     }
 
 return(
-    <Box sx={{ minWidth: 200 }}>
+    <Box sx={{ minWidth: 200 ,
+              marginTop:"15px",
+              width:"86%",
+              height:"auto"
+    }}>
     <FormControl fullWidth>
       <InputLabel id="timer-app">Select time</InputLabel>
       <Select

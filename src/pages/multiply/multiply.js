@@ -11,6 +11,8 @@ import {
 } from "../../features/answer/answer-slice";
 import SuccessBtn from "../../components/buttons/success";
 import { useNavigate } from "react-router-dom";
+import QuestionCard from '../../components/cards/question-card';
+import SetTimer from '../../components/set-timer/setTimer';
 
 let questionInterval;
 
@@ -113,12 +115,11 @@ function Multiply() {
 
   return (
     <div className={styles.mainContainer}>
+      <SetTimer/>
       <div className={styles.timer}>
         <Timer time={300} startTimer={clickTimer} />
       </div>
-
-      <div className={styles.addBody}>
-        <div className={styles.question}>
+      <QuestionCard>
           <Question
             firstOperand={question.firstOperand}
             secondOperand={question.secondOperand}
@@ -129,13 +130,12 @@ function Multiply() {
             value={answer}
             onGettingInput={catchInput}
           />
-        </div>
         <div className={styles.successBtnContainer}>
           {!clickTimer ? (
             <SuccessBtn
               onClick={getQuestionHandler}
               width="30%"
-              backgroundColor="#9370DB"
+              backgroundColor="#eeedef"
               cursor="pointer"
               text="START"
             />
@@ -143,7 +143,7 @@ function Multiply() {
             <SuccessBtn
               onClick={stopTestHandler}
               width="30%"
-              backgroundColor="red"
+              backgroundColor="#eeedef"
               cursor="pointer"
               text="STOP"
             />
@@ -153,9 +153,10 @@ function Multiply() {
             cursor="pointer"
             text="Results"
             onClick={getResultHandler}
+            backgroundColor="#eeedef"
           />
         </div>
-      </div>
+      </QuestionCard>
     </div>
   );
 }
