@@ -1,18 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Question from "../../components/question/question";
 import styles from "./divide.module.css";
 import Timer from "../../components/timer/timer";
 import SuccessBtn from "../../components/buttons/success";
 import useQuestionHandler from "../../hooks/useQuestionHandler";
 import { renewAnswers } from "../../features/answer/answer-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import QuestionCard from "../../components/cards/question-card";
 import SetTimer from "../../components/set-timer/setTimer";
 function Divide() {
+
+    // getting timer value
+    let time = useSelector((state)=>{
+      return state.timer;
+    });
+  
+    // initializing timer
+    const [timer,setTimer] = useState(time);
+  
+    // setting remaining time
+    const [remainingTime, setRemainingTime] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(renewAnswers());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(()=>{   
+    setTimer(time);
+},[setTimer,time]);
 
   const {
     clickTimer,
@@ -25,13 +40,16 @@ function Divide() {
     stopTestHandler,
     catchInput,
     question,
-  } = useQuestionHandler("division");
+  } = useQuestionHandler("division", remainingTime);
 
+  const onGettingNewTime = (remainingTimeData)=>{
+    setRemainingTime(remainingTimeData);
+}
   return (
     <div className={styles.mainContainer}>
       <SetTimer/>
       <div className={styles.timer}>
-        <Timer time={300} startTimer={clickTimer} />
+        <Timer time={timer} startTimer={clickTimer} newTime = {onGettingNewTime}/>
       </div>
       <QuestionCard>
           <Question
