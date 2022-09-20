@@ -13,11 +13,28 @@ import SuccessBtn from "../../components/buttons/success";
 import { useNavigate } from "react-router-dom";
 import QuestionCard from '../../components/cards/question-card';
 import SetTimer from '../../components/set-timer/setTimer';
+import {getNewTime} from '../../features/basic-ops/timer-slice'
 
 let questionInterval;
 
 function Multiply() {
   const navigate = useNavigate();
+
+  // getting timer value
+  let time = useSelector((state)=>{
+    return state.timer;
+  });
+
+  // initializing timer
+  const [timer,setTimer] = useState(time);
+
+  // setting remaining time
+  const [remainingTime, setRemainingTime] = useState(0);
+
+   // using useEffect for setTime 
+   useEffect(()=>{   
+    setTimer(time);
+},[setTimer,time]);
 
   // initializing dispatch function
   const dispatch = useDispatch();
@@ -41,6 +58,7 @@ function Multiply() {
 
   // This state records the answer provided by the user
   const [answer, setAnswer] = useState(1);
+
 
   // Retrieving the global answer state
   const answerState = useSelector((state) => state.answer);
@@ -81,11 +99,14 @@ function Multiply() {
       });
     }, 2000);
   };
-
+  const onGettingNewTime = (remainingTimeData)=>{
+    setRemainingTime(remainingTimeData);
+  }
   // stopTest
   const stopTestHandler = () => {
     clearInterval(questionInterval);
     setclickTimer(false);
+    dispatch(getNewTime(remainingTime));
     console.log(answerState);
   };
 
@@ -102,6 +123,7 @@ function Multiply() {
         count++;
       }
     });
+
     dispatch(
       getResults({
         questions: answerState.questions,
@@ -112,12 +134,20 @@ function Multiply() {
     navigate("../results");
   };
   // console.log(answerState);
-
+// Function executes after the timer 
+  const onTimeOver = ()=>{
+    clearInterval(questionInterval);
+  }
+  
   return (
     <div className={styles.mainContainer}>
       <SetTimer/>
       <div className={styles.timer}>
-        <Timer time={300} startTimer={clickTimer} />
+        <Timer time={timer} 
+               startTimer={clickTimer} 
+               newTime = {onGettingNewTime}
+               timeOver = {onTimeOver} 
+               />
       </div>
       <QuestionCard>
           <Question

@@ -25,6 +25,7 @@ const Timer = (props)=>{
             }else if(total === 0){
                 clearInterval(timerInterval);
                 stopTestAfterTimerCompletion();
+                props?.timeOver();
             }
             }); 
             // console.log(total); // strange behaviour !!! Value of total here doesn't change while inside the component scope it is changing and in jsx as well it can be received but within set interval scope it remains the same..........
