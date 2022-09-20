@@ -5,9 +5,9 @@ import {fetchQuestionsSubtract} from "../features/basic-ops/subtract-slice";
 import {fetchQuestionsAdd} from "../features/basic-ops/add-slice";
 import { fetchQuestionsDivide } from '../features/basic-ops/divide-slice';
 import { useNavigate } from 'react-router-dom';
-
+import {getNewTime} from '../features/basic-ops/timer-slice';
 let questionInterval;
-const useQuestionHandler = (typeOfOperation)=>{
+const useQuestionHandler = (typeOfOperation,time)=>{
 //   state defined for the question object
 const [question, setQuestion] = useState({
     firstOperand: 0,
@@ -34,6 +34,8 @@ const [question, setQuestion] = useState({
     return state.add
   }else if(typeOfOperation === "division"){
     return state.divide
+  }else{
+    return []
   }
  });
 
@@ -55,9 +57,6 @@ const getQuestion = (questions) => {
       
   },[dispatch, typeOfOperation]); 
 
-
-// Retrieving the global answer state
-const answerState = useSelector(state => state.answer);
 
     const getQuestionHandler = ()=>{
         setclickTimer(true);
@@ -87,8 +86,14 @@ const catchInput = (answer)=>{
 
 let navigate = useNavigate();
 
+// Retrieving the global answer state
+const answerState = useSelector(state => {
+  return state.answer
+});
+
 // Get result of the questions
 const getResultHandler = ()=>{
+  console.log(answerState)
   let count=0;
   answerState.questions.forEach((el)=>{
         if(el.question.answer === parseInt(el.recordedAnswer)){
@@ -101,16 +106,19 @@ const getResultHandler = ()=>{
     result:count
   }));
   navigate('../results');
-
 }
 
   // stopTest
   const stopTestHandler = ()=>{
     clearInterval(questionInterval); 
     setclickTimer(false);
-    console.log(answerState);
+    dispatch(getNewTime(time));
   }
 
+  // Stop Test on completing timer 
+  const stopTestAfterTimerCompletion = ()=>{
+    clearInterval(questionInterval); 
+  } 
   return {
     clickTimer,
     setclickTimer,
@@ -121,7 +129,8 @@ const getResultHandler = ()=>{
     stopTestHandler,
     catchInput,
     answer,
-    question
+    question,
+    stopTestAfterTimerCompletion
   }
 }
 

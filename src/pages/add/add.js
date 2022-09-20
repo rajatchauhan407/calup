@@ -14,16 +14,25 @@ function Add(){
   let time = useSelector((state)=>{
     return state.timer;
   });
-  // initializing dispatch function  
+
+  // initializing timer
   const [timer,setTimer] = useState(time);
 
-  const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(renewAnswers());
-        setTimer(time);
-    },[setTimer, dispatch,time]);
+  // setting remaining time
+  const [remainingTime, setRemainingTime] = useState(0);
 
-// retrieving functions from custom hook
+  // initializing dispatch function  
+  const dispatch = useDispatch();
+  // using useEffect for setTime 
+  useEffect(()=>{   
+        setTimer(time);
+    },[setTimer,time]);
+  // using useEffect for dispatch
+  useEffect(()=>{
+    dispatch(renewAnswers());
+  },[dispatch])
+
+  // retrieving functions from custom hook
     const {
     clickTimer,
     getQuestionHandler,
@@ -32,7 +41,11 @@ function Add(){
     stopTestHandler,
     catchInput,
     question
-    } = useQuestionHandler("addition");
+    } = useQuestionHandler("addition",remainingTime);
+
+    const onGettingNewTime = (remainingTimeData)=>{
+          setRemainingTime(remainingTimeData);
+    }
 
     return (
     <div className={styles.mainContainer}>
@@ -41,6 +54,7 @@ function Add(){
         <Timer
         time={timer}
         startTimer = {clickTimer}
+        newTime = {onGettingNewTime}
         />
         </div>
         
