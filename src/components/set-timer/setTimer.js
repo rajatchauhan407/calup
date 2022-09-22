@@ -13,7 +13,6 @@ const SetTimer = (props)=>{
       dispatch(getTimer(e.target.value));   
       setTimer(e.target.value);
     }
-
 return(
     <Box sx={{ minWidth: 200 ,
               marginTop:"15px",
@@ -21,12 +20,12 @@ return(
               height:"auto"
     }}>
     <FormControl fullWidth>
-      <InputLabel id="timer-app">Select time</InputLabel>
+      <InputLabel id="timer-app">Select time in minutes</InputLabel>
       <Select
         labelId="timer-app-label"
         id="timer-app-id"
         value={timer}
-        label="select-timer"
+        label="select-timer-in-minutes"
         onChange={onSelectTimerInput}
       >
         <MenuItem value={1}>One</MenuItem>

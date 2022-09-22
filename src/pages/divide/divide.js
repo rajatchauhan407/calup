@@ -31,7 +31,6 @@ function Divide() {
 
   const {
     clickTimer,
-    setclickTimer,
     getQuestionHandler,
     setAnswer,
     answer,

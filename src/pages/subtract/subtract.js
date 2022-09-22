@@ -33,7 +33,6 @@ function Subtract() {
 
   const {
     clickTimer,
-    setclickTimer,
     getQuestionHandler,
     setAnswer,
     answer,

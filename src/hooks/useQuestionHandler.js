@@ -19,7 +19,7 @@ const [question, setQuestion] = useState({
   });
 
 // This click starts and stops the timer in Timer Component 
- const [clickTimer, setclickTimer] = useState(false);
+ const [clickTimer, setClickTimer] = useState(false);
 
  // This state records the answer provided by the user 
  const [answer, setAnswer] = useState(0);
@@ -59,7 +59,7 @@ const getQuestion = (questions) => {
 
 
     const getQuestionHandler = ()=>{
-        setclickTimer(true);
+        setClickTimer(true);
         let count = 0;
           questionInterval = setInterval(()=>{  
             count = count + 1;
@@ -111,7 +111,7 @@ const getResultHandler = ()=>{
   // stopTest
   const stopTestHandler = ()=>{
     clearInterval(questionInterval); 
-    setclickTimer(false);
+    setClickTimer(false);
     dispatch(getNewTime(time));
   }
 
@@ -121,7 +121,7 @@ const getResultHandler = ()=>{
   } 
   return {
     clickTimer,
-    setclickTimer,
+    setClickTimer,
     getQuestionHandler,
     setAnswer,
     questionInterval,
@@ -133,5 +133,4 @@ const getResultHandler = ()=>{
     stopTestAfterTimerCompletion
   }
 }
-
 export default useQuestionHandler;

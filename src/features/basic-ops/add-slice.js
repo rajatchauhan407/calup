@@ -38,9 +38,9 @@ export const fetchQuestionsAdd = createAsyncThunk('add/fetchQuestions',async(kin
         name:"addition",
         initialState,
         reducers:{
-            getQuestions(){
+            // getQuestions(){
 
-            }
+            // }
         },
         extraReducers: (builder)=>{
             builder.addCase(fetchQuestionsAdd.fulfilled,(state,action)=>{

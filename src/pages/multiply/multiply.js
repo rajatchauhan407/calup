@@ -54,7 +54,7 @@ function Multiply() {
   });
 
   // This click starts and stops the timer in Timer Component
-  const [clickTimer, setclickTimer] = useState(false);
+  const [clickTimer, setClickTimer] = useState(false);
 
   // This state records the answer provided by the user
   const [answer, setAnswer] = useState(1);
@@ -82,7 +82,7 @@ function Multiply() {
 
   // function for questions to appear automatically
   const getQuestionHandler = () => {
-    setclickTimer(true);
+    setClickTimer(true);
     questionInterval = setInterval(() => {
       const question = getQuestion(questions);
       setQuestion((prevQuestion) => {
@@ -105,7 +105,7 @@ function Multiply() {
   // stopTest
   const stopTestHandler = () => {
     clearInterval(questionInterval);
-    setclickTimer(false);
+    setClickTimer(false);
     dispatch(getNewTime(remainingTime));
     console.log(answerState);
   };
