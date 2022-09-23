@@ -12,7 +12,8 @@ const SuccessBtn = (props) => {
                 outline: 'none',
                 borderRadius: '5px',
                 border: '0px',
-                cursor:props.cursor
+                cursor:props.cursor,
+                disabled:props.disabled || 'false'
             }}
             onClick= {props.onClick}
         >

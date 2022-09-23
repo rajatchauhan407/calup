@@ -93,7 +93,8 @@ function Add(){
         text="Results"
         onClick={getResultHandler}  
         margin="0" 
-        backgroundColor="#eeedef"   
+        backgroundColor="#eeedef"  
+        disabled={true}
         />
       </div>
       </QuestionCard>
