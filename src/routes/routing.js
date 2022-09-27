@@ -1,5 +1,5 @@
 import {Routes, Route} from "react-router-dom";
-import Home from "../pages/homepage";
+import Home from "../pages/home/homepage";
 import LoginForm from "../pages/loginForm";
 import Multiply from "../pages/multiply/multiply";
 import Divide from "../pages/divide/divide";
