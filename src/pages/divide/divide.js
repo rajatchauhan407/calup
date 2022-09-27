@@ -89,7 +89,6 @@ function Divide() {
             onClick={getResultHandler}
             margin="0"
             backgroundColor="#eeedef"
-            disabled={clickTimer}
           />
         </div>
       </QuestionCard>

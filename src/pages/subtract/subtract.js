@@ -88,7 +88,6 @@ function Subtract() {
             text="Results"
             onClick={getResultHandler}
             backgroundColor="#eeedef"
-            disabled={clickTimer}
           />
         </div>
       </QuestionCard>
