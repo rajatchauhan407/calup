@@ -93,8 +93,13 @@ function Add(){
         text="Results"
         onClick={getResultHandler}  
         margin="0" 
+<<<<<<< HEAD
         backgroundColor="#eeedef"  
         disabled={true}
+=======
+        backgroundColor="#eeedef"   
+        disabled={clickTimer}
+>>>>>>> CAL-8
         />
       </div>
       </QuestionCard>
