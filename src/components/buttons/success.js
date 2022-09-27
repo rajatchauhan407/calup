@@ -15,6 +15,8 @@ const SuccessBtn = (props) => {
                 cursor:props.cursor,
                 disabled:props.disabled || 'false'
             }}
+            disabled={props.disabled || false}
+            
             onClick= {props.onClick}
         >
             {props.text || 'Success'}
