@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./homepage.module.css";
-
+import HomefeedCard from "../../components/cards/homefeed-card";
 
 function Home(){
     return (
-        <div>
-            
-        </div>
+        <>
+            <HomefeedCard />
+            <HomefeedCard />
+            <HomefeedCard />
+        </>
     );
 }
 export default Home;
