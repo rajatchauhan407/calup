@@ -22,6 +22,9 @@
     height:auto;
     justify-content: flex-end;
 }
+.menuIcon{
+    display: none;
+}
 @media only screen and (max-width:600px){
     .headerContainer{
         display:flex;

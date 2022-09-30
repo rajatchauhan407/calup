@@ -7,7 +7,7 @@ function QuestionCard(props){
         minWidth:275,
         minHeight:200,
         height:"auto",
-        width:"90%",
+        width:"88%",
         padding:"3%",
         backgroundColor:"#9370DB",
         marginTop:5
