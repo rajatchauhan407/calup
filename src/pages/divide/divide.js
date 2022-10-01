@@ -66,7 +66,6 @@ if(loading){
         Error Message — <strong>{errorMessage}</strong>
       </Alert>
   </Box>
-  
 }else 
   return (
     <div className={styles.mainContainer}>

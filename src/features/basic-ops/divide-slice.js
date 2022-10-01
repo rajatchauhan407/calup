@@ -42,7 +42,7 @@ const divideSlice = createSlice({
     extraReducers: (builder)=>{
         builder.addCase(fetchQuestionsDivide.fulfilled,(state,action)=>{
           const {questions} = action.payload;
-          state.loading = "succed";
+          state.loading = false;
           state.questions = questions;
             // state.questions.push(action.payload.questions);
         });
