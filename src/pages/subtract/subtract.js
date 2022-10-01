@@ -8,6 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { renewAnswers } from "../../features/answer/answer-slice";
 import QuestionCard from "../../components/cards/question-card";
 import SetTimer from "../../components/set-timer/setTimer";
+import Box from "@mui/material/Box";
+import CircularProgress  from "@mui/material/CircularProgress";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
 function Subtract() {
 
   // getting timer value
@@ -24,7 +29,7 @@ function Subtract() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(renewAnswers());
-  }, []);
+  }, []); // only dispatch when component mounts
 
   // using useEffect for setTime 
   useEffect(()=>{   
@@ -41,12 +46,31 @@ function Subtract() {
     stopTestHandler,
     catchInput,
     question,
+    loading,
+    error,
+    errorMessage
   } = useQuestionHandler("subtraction", remainingTime);
 
   const onGettingNewTime = (remainingTimeData)=>{
     setRemainingTime(remainingTimeData);
 }
 
+
+if(loading){
+  return (
+    <Box sx={{display: 'flex', justifyContent:'center' }}>
+        <CircularProgress sx={{ color:"#9370DB"}} />
+    </Box>
+  )
+}else if(error){
+  return <Box sx={{display: 'flex', justifyContent:'center'}}>
+      <Alert severity="error" sx={{width:"100%"}}>
+        <AlertTitle>Error</AlertTitle>
+        Error Message — <strong>{errorMessage}</strong>
+      </Alert>
+  </Box>
+  
+}else
   return (
     <div className={styles.mainContainer}>
     <SetTimer/>
