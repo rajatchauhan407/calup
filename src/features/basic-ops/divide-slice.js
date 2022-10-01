@@ -2,8 +2,17 @@ import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 
 const initialState = {
-    questions:[],
-    loading: 'idle'
+    questions:[{
+      firstOperand: 1,
+      secondOperand: 1,
+      operator: "/",
+      answer: 1,
+      level: 1,
+      standard: 1,
+    }],
+    loading:false, 
+    error:false,
+    errorMessage:""
 }
 
 export const fetchQuestionsDivide = createAsyncThunk('divide/fetchQuestions',async (kind)=>{
@@ -17,8 +26,11 @@ export const fetchQuestionsDivide = createAsyncThunk('divide/fetchQuestions',asy
           kind: kind,
         }),
       });
-      return await response.json();}catch(error){
-        return error;
+      return await response.json();
+    }catch(error){
+      throw new Error(JSON.stringify({
+        message:"Serve Not Connected"
+      }));
       }
 });
 const divideSlice = createSlice({
@@ -33,6 +45,16 @@ const divideSlice = createSlice({
           state.loading = "succed";
           state.questions = questions;
             // state.questions.push(action.payload.questions);
+        });
+        builder.addCase(fetchQuestionsDivide.pending,(state, action)=>{
+          state.loading = true;
+        });
+        builder.addCase(fetchQuestionsDivide.rejected, (state, action)=>{
+          const {error} = action;
+          state.loading = false;
+          state.error = true;
+          state.errorMessage = JSON.parse(error.message).message;
+          // console.log(JSON.parse(error.message).message);
         });
     }
 });
