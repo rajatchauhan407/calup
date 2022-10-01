@@ -1,10 +1,18 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
 let initialState = {
-    questions:[],
-    loading:true,
-    result:null,
-    errorMessage:null
+    questions: 
+          [{
+            firstOperand: 1,
+            secondOperand: 1,
+            operator: "-",
+            answer: 0,
+            level: 1,
+            standard: 1,
+          }],
+          loading:false, 
+          error:false,
+          errorMessage:""
 }
 
 export const fetchQuestionsSubtract = createAsyncThunk('subtract/fetchQuestions',async (kind)=>{
@@ -22,9 +30,9 @@ export const fetchQuestionsSubtract = createAsyncThunk('subtract/fetchQuestions'
         }); 
         return response.json();
         }catch(error){
-            throw new Error({
-            error:error
-        });
+            throw new Error(JSON.stringify({
+            message:"Server Not Connected"
+        }));
     }
 });
  
@@ -39,11 +47,15 @@ const subtractSlice = createSlice({
             state.loading = false;
             state.questions = action.payload.questions;
         });
-        builder.addCase(fetchQuestionsSubtract.rejected,(state, action)=>{
-            state.loading = false;
-            state.errorMessage = action.payload.error;
+        builder.addCase(fetchQuestionsSubtract.pending, (state, action)=>{
+            state.loading = true;
         });
-
+        builder.addCase(fetchQuestionsSubtract.rejected,(state, action)=>{
+            const {error} = action;
+            state.loading = false;
+            state.error = true;
+            state.errorMessage = JSON.parse(error.message).message;
+        });
     }
 });
 

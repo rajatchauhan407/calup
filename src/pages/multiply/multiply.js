@@ -14,6 +14,10 @@ import { useNavigate } from "react-router-dom";
 import QuestionCard from '../../components/cards/question-card';
 import SetTimer from '../../components/set-timer/setTimer';
 import {getNewTime} from '../../features/basic-ops/timer-slice'
+import Box from "@mui/material/Box";
+import CircularProgress  from "@mui/material/CircularProgress";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 let questionInterval;
 
@@ -64,7 +68,7 @@ function Multiply() {
   const answerState = useSelector((state) => state.answer);
 
   // getting Questions from the global state
-  const { questions } = useSelector((state) => {
+  const { questions, loading, error, errorMessage } = useSelector((state) => {
     return state.multiply;
   });
 
@@ -139,6 +143,21 @@ function Multiply() {
     clearInterval(questionInterval);
   }
   
+  if(loading){
+    return (
+      <Box sx={{display: 'flex', justifyContent:'center' }}>
+          <CircularProgress sx={{ color:"#9370DB"}} />
+      </Box>
+    )
+  }else if(error){
+    return <Box sx={{display: 'flex', justifyContent:'center'}}>
+        <Alert severity="error" sx={{width:"100%"}}>
+          <AlertTitle>Error</AlertTitle>
+          Error Message — <strong>{errorMessage}</strong>
+        </Alert>
+    </Box>
+    
+  }else
   return (
     <div className={styles.mainContainer}>
       <SetTimer/>

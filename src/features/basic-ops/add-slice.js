@@ -10,7 +10,9 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
             level: 1,
             standard: 1,
           }],
-          loading:"true"
+          loading:false, 
+          error:false,
+          errorMessage:""
       };
 export const fetchQuestionsAdd = createAsyncThunk('add/fetchQuestions',async(kind)=>{
             try{
@@ -27,8 +29,11 @@ export const fetchQuestionsAdd = createAsyncThunk('add/fetchQuestions',async(kin
                 }); 
                 return response.json();
             }catch(error){
+            //    return {
+            //     error:"Server Not Connected"
+            //    }
                 throw new Error({
-                    error:error
+                    message:"Server Not Connected"
                 });
             }
     });
@@ -52,7 +57,8 @@ export const fetchQuestionsAdd = createAsyncThunk('add/fetchQuestions',async(kin
             });
             builder.addCase(fetchQuestionsAdd.rejected,(state, action)=>{
                 state.loading = false;
-                console.log(action.payload);
+                state.error = true;
+                state.errorMessage = "Server Not Connected";
             })
         }
     });

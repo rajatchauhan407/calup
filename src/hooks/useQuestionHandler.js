@@ -27,7 +27,7 @@ const [question, setQuestion] = useState({
  
 
  // getting Questions from the global state 
- const {questions} = useSelector(state => {
+ const {questions, loading, error, errorMessage} = useSelector(state => {
   if(typeOfOperation === "subtraction"){
     return state.subtract
   }else if(typeOfOperation === "addition"){
@@ -130,7 +130,10 @@ const getResultHandler = ()=>{
     catchInput,
     answer,
     question,
-    stopTestAfterTimerCompletion
+    stopTestAfterTimerCompletion,
+    loading, 
+    error,
+    errorMessage
   }
 }
 export default useQuestionHandler;
