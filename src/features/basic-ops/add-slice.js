@@ -14,7 +14,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
           error:false,
           errorMessage:""
       };
-export const fetchQuestionsAdd = createAsyncThunk('add/fetchQuestions',async(kind,thunkAPI)=>{
+export const fetchQuestionsAdd = createAsyncThunk('add/fetchQuestions',async(kind)=>{
             try{
                 const response = await fetch("http://localhost:9000/multiply",{
                         method:"POST",

@@ -9,7 +9,10 @@ const initialState = {
       answer: 1,
       level: 1,
       standard: 1,
-    }]
+    }],
+    loading:false, 
+    error:false,
+    errorMessage:""
 };
 
 const multiplySlice = createSlice({
@@ -17,8 +20,17 @@ const multiplySlice = createSlice({
   initialState,
   reducers: {
     getQuestions(state, action) {
+      state.loading = false;
       state.questions = action.payload.questions;
     },
+    requestPending(state, action){
+      state.loading = action.payload;
+    },
+    requestRejected(state, action){
+      state.loading = false;
+      state.error = true;
+      state.errorMessage = action.payload.message;
+    }
   },
 });
 
@@ -38,10 +50,14 @@ export const getMultiplicationQuestions = () => {
       return response.json();
     };
     try {
+      dispatch(multiplySlice.actions.requestPending(true));
       const data = await sendRequest();
       dispatch(multiplySlice.actions.getQuestions(data));
+      dispatch(multiplySlice.actions.requestPending(false));
     } catch (error) {
-      console.log(error);
+      dispatch(multiplySlice.actions.requestRejected({
+        message:"Server Not Connected"
+      }))
     }
   };
 };
