@@ -8,7 +8,10 @@ import useQuestionHandler from "../../hooks/useQuestionHandler";
 import { renewAnswers } from "../../features/answer/answer-slice";
 import {useDispatch, useSelector} from "react-redux";
 import QuestionCard from "../../components/cards/question-card";
-
+import Box from "@mui/material/Box";
+import CircularProgress  from "@mui/material/CircularProgress";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 function Add(){
   // getting timer value
   let time = useSelector((state)=>{
@@ -40,14 +43,30 @@ function Add(){
     getResultHandler, 
     stopTestHandler,
     catchInput,
-    question
+    question,
+    loading,
+    error,
+    errorMessage
     } = useQuestionHandler("addition",remainingTime);
 
     const onGettingNewTime = (remainingTimeData)=>{
           setRemainingTime(remainingTimeData);
     }
-
-    return (
+    if(loading){
+      return (
+        <Box sx={{display: 'flex', justifyContent:'center' }}>
+            <CircularProgress sx={{ color:"#9370DB"}} />
+        </Box>
+      )
+    }else if(error){
+      return <Box sx={{display: 'flex', justifyContent:'center'}}>
+          <Alert severity="error" sx={{width:"100%"}}>
+            <AlertTitle>Error</AlertTitle>
+            Error Message — <strong>{errorMessage}</strong>
+          </Alert>
+      </Box>
+      
+    }else return (
     <div className={styles.mainContainer}>
           <SetTimer/>
         <div className={styles.timer}>
