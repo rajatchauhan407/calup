@@ -46,7 +46,8 @@ function Add(){
     question,
     loading,
     error,
-    errorMessage
+    errorMessage,
+    questionInterval
     } = useQuestionHandler("addition",remainingTime);
 
     const onGettingNewTime = (remainingTimeData)=>{

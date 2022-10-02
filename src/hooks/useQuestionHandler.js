@@ -6,6 +6,7 @@ import {fetchQuestionsAdd} from "../features/basic-ops/add-slice";
 import { fetchQuestionsDivide } from '../features/basic-ops/divide-slice';
 import { useNavigate } from 'react-router-dom';
 import {getNewTime} from '../features/basic-ops/timer-slice';
+import { clear } from '@testing-library/user-event/dist/clear';
 let questionInterval;
 const useQuestionHandler = (typeOfOperation,time)=>{
 //   state defined for the question object
@@ -77,7 +78,6 @@ const getQuestion = (questions) => {
               });
           },2000);         
   }
-  
 // catching input from Question
 const catchInput = (answer)=>{
   setAnswer(answer);
@@ -107,7 +107,13 @@ const getResultHandler = ()=>{
   }));
   navigate('../results');
 }
-
+// run when component unmounts to clear interval to avoid memory leakage
+ useEffect(()=>{
+  return ()=>{
+    clearInterval(questionInterval);
+    console.log("Timer Interval")
+  }
+},[]);
   // stopTest
   const stopTestHandler = ()=>{
     clearInterval(questionInterval); 
