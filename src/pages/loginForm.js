@@ -116,6 +116,7 @@ function LoginForm() {
           alignSelf:"center"
         }}
         >{signUpState.data.message}</Alert>}
+    <div className={styles.login_form_main}>
     <form onSubmit={submitHandler} className={`${styles["form-container"]}`}>
       {/* <div className={`${styles["image-container"]}`}>
         <h1>{isLogin ? " Sign Up" : "Sign In"}</h1>
@@ -140,7 +141,7 @@ function LoginForm() {
             alt="Calup"
             src={require("../images/calup.png")}
             sx={{
-              width: "70%",
+              width: "60%",
             }}
           />
         </Card>
@@ -214,6 +215,7 @@ function LoginForm() {
         SignIn with Google
       </Button>
     </form>
+    </div>
     </>
   );
 }

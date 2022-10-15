@@ -7,12 +7,16 @@ body {
 	line-height: 1.5;
 	/* background-color: #f1f3fb; */
 }
+.login_form_main{
+    min-width:400px;
+    margin:auto;
+}
 .form-container{
     margin: auto auto;
     display:flex;
     flex-direction: column;
     align-self: center;
-    width:100%;
+    width:100% !important;
     min-height: 100vh;
     background-color: #fff;
     /* height:auto; */

@@ -1,0 +1,16 @@
+.successBtnContainer{
+    box-sizing: border-box;
+    display: flex;
+    width:70%;
+    height:auto;
+    justify-content:space-between;
+    margin-top:10px;
+    padding:6% 6% 6% 6%;
+    margin:auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .successBtnContainer{
+        display: none;
+    }
+}

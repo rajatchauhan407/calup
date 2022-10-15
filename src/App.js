@@ -10,9 +10,7 @@ import {Route, Routes} from 'react-router-dom';
 import Header from "./components/header/header";
 // import Home from './pages/homepage';
 import AuthContext from './store/auth-context-new';
-import AuthContextJWT from './store/auth-context';
 import Routing from './routes/routing';
-import SideNav from './components/header/header-parts/side-nav/sideNav';
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -20,6 +18,7 @@ function App() {
   function logoutHandler(){
     console.log("Logout Handler called !!!")
   }
+  
   return ( 
     <div className="App">  
     {authCtx.isLoggedIn?

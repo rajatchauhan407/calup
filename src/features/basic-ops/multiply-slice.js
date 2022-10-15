@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import {BACKEND_DEV_URL} from '../../config/api';
 const initialState = {
   questions: 
     [{
@@ -37,7 +37,7 @@ const multiplySlice = createSlice({
 export const getMultiplicationQuestions = () => {
   return async (dispatch) => {
     const sendRequest = async () => {
-      const response = await fetch("http://localhost:9000/multiply", {
+      const response = await fetch(BACKEND_DEV_URL+"/multiply", {
         method: "POST",
         mode: "cors",
         headers: {

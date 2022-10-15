@@ -1,4 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {BACKEND_DEV_URL} from '../../config/api';
 
     const initialState = {
         questions: 
@@ -16,7 +17,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
       };
 export const fetchQuestionsAdd = createAsyncThunk('add/fetchQuestions',async(kind)=>{
             try{
-                const response = await fetch("http://localhost:9000/multiply",{
+                const response = await fetch(BACKEND_DEV_URL+'/multiply',{
                         method:"POST",
                         mode:"cors",
                         credentials: "include",

@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import { BACKEND_DEV_URL } from '../config/api';
 
 const AuthContext = new React.createContext({
     isLoggedIn:'',
@@ -25,7 +26,7 @@ AuthContextProvider = (props)=>{
       mode:'cors',
       credentials:'include'
     }
-    const data = await fetch('http://localhost:9000/auth-me',options).then(
+    const data = await fetch(BACKEND_DEV_URL+'/auth-me',options).then(
       res => res.json()
     ).catch(err=> err);
     return data;
@@ -67,7 +68,7 @@ AuthContextProvider = (props)=>{
       credentials:'include',
       "Content-Type":"application/json"
     }
-    await fetch('http://localhost:9000/logout', options).then(async (res)=>{
+    await fetch(BACKEND_DEV_URL+'/logout', options).then(async (res)=>{
       const data = await res.json();
       console.log(data.message);
       localStorage.removeItem('email');

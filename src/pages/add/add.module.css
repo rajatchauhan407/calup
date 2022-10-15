@@ -44,6 +44,9 @@
     justify-content:center;
     margin-top:10px;
 }
+.successBtnContainer{
+    display: none;
+}
 @media only screen and (max-width: 600px) {
     
     .addBody{
