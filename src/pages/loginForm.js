@@ -10,12 +10,8 @@ import AuthContext from "../store/auth-context";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import AuthContextJWT from '../store/auth-context';
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
-import axios from "axios";
-import { textTransform } from "@mui/system";
-
+import {BACKEND_DEV_URL} from "../config/api";
 function LoginForm() {
 
   const authCtx = useContext(AuthContext);
@@ -210,7 +206,7 @@ function LoginForm() {
           textTransform: "none",
         }}
         color="secondary"
-        href="http://localhost:9000/authgoogle"
+        href={BACKEND_DEV_URL+'/authgoogle'}
       >
         SignIn with Google
       </Button>
