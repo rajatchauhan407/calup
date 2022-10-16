@@ -9,7 +9,7 @@ deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
   app: "calup"
-  env: "Docker-env"
+  env: "Calup-env"
   bucket_name: "elasticbeanstalk-us-east-1-745411510829"
   bucket_path: "calup"
   on:
