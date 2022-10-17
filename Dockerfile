@@ -12,8 +12,6 @@ RUN npm run build
 
 FROM nginx
 
-COPY --from=builder /app/build /usr/share/nginx/htm
+EXPOSE 80
 
-COPY nginx.conf /etc/nginx/nginx.conf
-
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=builder /app/build /usr/share/nginx/html
