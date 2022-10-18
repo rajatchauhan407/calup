@@ -5,7 +5,7 @@ services:
 before_install:
   - docker build -t rajatchauhan407/cal-up -f Dockerfile.dev .
 script:
-  - docker run -e CI=true rajatchauhan407/react-docker npm run test -- --coverage
+  - docker run -e CI=true rajatchauhan407/cal-up npm run test -- --coverage
 
 deploy:
   provider: elasticbeanstalk
