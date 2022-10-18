@@ -12,7 +12,7 @@ deploy:
   region: "us-east-1"
   app: "calup"
   env: "Calup-env"
-  bucket_name: "elasticbeanstalk-us-east-1-745411510829"
+  bucket_name: "elasticbeanstalk-us-east-1-745411510829/calup"
   bucket_path: "calup"
   on:
     branch: main
