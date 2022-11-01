@@ -1,0 +1,6 @@
+node_modules
+Dockerfile
+*.pem
+docker-compose.yml
+.travis.yml
+.env
