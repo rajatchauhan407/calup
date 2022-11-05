@@ -8,7 +8,7 @@ before_install:
 #   - docker run -e CI=true rajatchauhan407/cal-up npm run test
 
 deploy:
-  provider: elasticbeanstalk Calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com 
+  provider: elasticbeanstalk
   region: "us-east-1"
   app: "calup-frontend"
   env: "Calupfrontend-env"
