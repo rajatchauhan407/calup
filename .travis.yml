@@ -8,12 +8,12 @@ script:
   - docker run -e CI=true rajatchauhan407/cal-up npm run test -- --coverage
 
 deploy:
-  provider: elasticbeanstalk
+  provider: elasticbeanstalk Calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com 
   region: "us-east-1"
-  app: "calup"
-  env: "Calup-env"
+  app: "calup-frontend"
+  env: "Calupfrontend-env"
   bucket_name: "elasticbeanstalk-us-east-1-745411510829"
-  bucket_path: "calup"
+  bucket_path: "calup-frontend"
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY

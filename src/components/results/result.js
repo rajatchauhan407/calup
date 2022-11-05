@@ -3,6 +3,7 @@ import styles from "./result.module.css";
 import useGetResults from "../../hooks/use-getResults";
 const Result = (props) => {
   const { results } = useGetResults();
+  console.log(results);
 
   return (
     <div className={styles.result_card_wrapper}>

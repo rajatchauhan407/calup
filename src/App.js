@@ -11,7 +11,7 @@ import Header from "./components/header/header";
 // import Home from './pages/homepage';
 import AuthContext from './store/auth-context-new';
 import Routing from './routes/routing';
-
+import Result from './components/results/resultsNew';
 function App() {
   const authCtx = useContext(AuthContext);
 
@@ -20,7 +20,8 @@ function App() {
   }
   
   return ( 
-    <div className="App">  
+    <div className="App">
+    {/* <Result/> */}
     {authCtx.isLoggedIn?
     <Header />:
     ''
