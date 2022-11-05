@@ -5,7 +5,7 @@ services:
 before_install:
   - docker build -t rajatchauhan407/cal-up -f Dockerfile.dev .
 script:
-  - docker run -e CI=true rajatchauhan407/cal-up npm run test -- --coverage
+  - docker run -e CI=true rajatchauhan407/cal-up npm run test
 
 deploy:
   provider: elasticbeanstalk Calupfrontend-env.eba-ghpdv5nv.us-east-1.elasticbeanstalk.com 
