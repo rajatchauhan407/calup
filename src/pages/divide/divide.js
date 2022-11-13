@@ -11,6 +11,7 @@ import SetTimer from "../../components/set-timer/setTimer";
 import Box from "@mui/material/Box";
 import CircularProgress  from "@mui/material/CircularProgress";
 import Alert from '@mui/material/Alert';
+import QuestionButton from "../../components/question/question-buttons";
 import AlertTitle from '@mui/material/AlertTitle';
 function Divide() {
 
@@ -115,6 +116,12 @@ if(loading){
             disabled={clickTimer}
           />
         </div>
+        <QuestionButton 
+        clickTimer = {clickTimer}
+        getQuestionHandler = {getQuestionHandler}
+        stopTestHandler = {stopTestHandler}
+        getResultHandler = {getResultHandler}
+      />
       </QuestionCard>
     </div>
   );

@@ -18,7 +18,7 @@ import Box from "@mui/material/Box";
 import CircularProgress  from "@mui/material/CircularProgress";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-
+import QuestionButton from "../../components/question/question-buttons";
 let questionInterval;
 
 function Multiply() {
@@ -206,6 +206,12 @@ function Multiply() {
             disabled={clickTimer}
           />
         </div>
+        <QuestionButton 
+        clickTimer = {clickTimer}
+        getQuestionHandler = {getQuestionHandler}
+        stopTestHandler = {stopTestHandler}
+        getResultHandler = {getResultHandler}
+      />
       </QuestionCard>
     </div>
   );
