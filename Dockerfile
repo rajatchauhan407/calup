@@ -22,6 +22,6 @@ COPY --from=builder /app/build /usr/share/nginx/html
 
 EXPOSE 80
 
-EXPOSE 443
+# EXPOSE 443
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

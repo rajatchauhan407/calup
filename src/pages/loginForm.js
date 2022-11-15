@@ -1,6 +1,5 @@
-import { React, useEffect, useState, useContext, useRef } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
-import useInput from "../hooks/use-input";
+import { React, useState, useContext, useRef } from "react";
+
 import styles from "./loginForm.module.css";
 import Button from "@mui/material/Button";
 import useHttp1 from "../hooks/use-http1";
@@ -38,9 +37,8 @@ function LoginForm() {
   
   // contain only characters, numeric digits, underscore and first character must be a letter
   const validatePassword = (password) => {
-    // const regex = new RegExp(/^[A-Za-z]\w{7,21}$/);
-    // const check = regex.test(password);
-    const check = true;
+    const regex = new RegExp(/^[A-Za-z]\w{7,21}$/);
+    const check = regex.test(password);
     if(check){
       setPasswordIsValid(true);
     }else{
@@ -53,6 +51,7 @@ function LoginForm() {
   }
 
   function checkFormValidity(){
+    
     if(emailIsValid && passwordIsValid){
       setFormIsValid(true);
     }else{
@@ -65,6 +64,7 @@ function LoginForm() {
     useHttp1(sendSignUpRequest);
   const submitHandler = async (event) => {
     console.log(isLogin);
+    console.log(formIsValid);
     event.preventDefault();
     const authData = {
       email: enteredEmail.current.value,
