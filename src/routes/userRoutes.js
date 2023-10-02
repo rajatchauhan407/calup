@@ -5,6 +5,7 @@ import {useContext} from "react";
 function UserRoutes(){
     let authCtx = useContext(AuthContext);
     console.log(authCtx.isLoggedIn);
+
     return (
         <>
          {

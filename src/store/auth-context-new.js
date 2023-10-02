@@ -11,9 +11,7 @@ const AuthContext = new React.createContext({
     onLogout:()=>{}
 });
 // Provider component in auth-context file only 
-export const 
-
-AuthContextProvider = (props)=>{
+export const AuthContextProvider = (props)=>{
   let navigate = useNavigate();
   const loggedIn = localStorage.getItem('loggedIn');
   const [isLoggedIn,setIsLoggedIn] = useState(loggedIn || false);
@@ -27,7 +25,7 @@ AuthContextProvider = (props)=>{
       credentials:'include'
     }
     const data = await fetch(BACKEND_DEV_URL+'/auth-me',options).then(
-      res => res.json()
+      res => {console.log(res);return res.json()}
     ).catch(err=> err);
     return data;
    }
@@ -35,7 +33,9 @@ AuthContextProvider = (props)=>{
   // login handler receives data from getMe() 
    const loginHandler = ()=>{ 
     console.log("Is it working");
-    getMe().then(res => {if(res.email){
+    getMe().then(res => {
+      console.log(res);
+      if(res.email){
       localStorage.setItem('loggedIn',true);
       localStorage.setItem('email',res.email);
       localStorage.setItem('profilePic',res.picture);

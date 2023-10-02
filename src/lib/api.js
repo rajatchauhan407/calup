@@ -1,8 +1,4 @@
 import React,{useContext} from "react";
-
-
-
-
 const sendAuthUrl = 'http://localhost:9000/login';
 const SignUpUrl = 'http://localhost:9000/signUp';
 export const sendAuthData = async(authData) =>{

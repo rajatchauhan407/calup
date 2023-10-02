@@ -6,13 +6,14 @@ import AuthContext from '../store/auth-context-new';
 function ProtectedRoute(){
     
     const authCtx = useContext(AuthContext);
+    console.log(authCtx);
     return (
         <>
     {
         !authCtx.isLoggedIn?
         <Outlet/>
         :
-        <Navigate to='/'/>
+        <Navigate to='/home'/>
     }
     </>
     )
